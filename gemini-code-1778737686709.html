@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragon | NBA Portfolio</title>
+    <style>
+        :root {
+            --apple-blue: #007aff;
+            --dragon-orange: #ff4d00;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            background: #000;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            scroll-behavior: smooth;
+        }
+
+        /* Hero Header */
+        .hero {
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 77, 0, 0.1) 0%, transparent 80%);
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 { font-size: clamp(3.5rem, 12vw, 6.5rem); letter-spacing: -5px; margin: 0; font-weight: 800; }
+        .tagline { color: #888; font-size: 1.1rem; letter-spacing: 4px; text-transform: uppercase; margin: 20px 0 40px; }
+
+        /* Skills/Tags */
+        .skills { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+        .skill { border: 1px solid rgba(255,255,255,0.1); padding: 8px 22px; border-radius: 50px; font-size: 0.85rem; backdrop-filter: blur(10px); }
+
+        /* Shorts Feed (YouTube) */
+        .section-title { text-align: center; font-size: 2.2rem; margin: 60px 0 40px; letter-spacing: -1px; }
+        .shorts-grid { 
+            max-width: 1300px; 
+            margin: 0 auto 100px; 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 25px; 
+            padding: 20px; 
+        }
+        .short-card { 
+            aspect-ratio: 9/16; 
+            border-radius: 24px; 
+            overflow: hidden; 
+            border: 1px solid rgba(255,255,255,0.1); 
+            transition: 0.4s ease; 
+            background: #0a0a0a;
+        }
+        .short-card:hover { border-color: var(--apple-blue); transform: translateY(-10px); }
+        iframe { width: 100%; height: 100%; border: none; }
+
+        /* Footer CTA */
+        .cta { text-align: center; padding: 120px 20px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .btn { 
+            background: #fff; 
+            color: #000; 
+            padding: 20px 55px; 
+            border-radius: 50px; 
+            text-decoration: none; 
+            font-weight: 700; 
+            font-size: 1.2rem; 
+            transition: 0.3s; 
+            display: inline-block; 
+        }
+        .btn:hover { background: var(--apple-blue); color: #fff; box-shadow: 0 0 40px rgba(0, 122, 255, 0.4); }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <h1>DRAGON</h1>
+        <p class="tagline">NBA Content Specialist</p>
+        <div class="skills">
+            <div class="skill">3D Edits</div>
+            <div class="skill">After Effects</div>
+            <div class="skill">Motion Graphics</div>
+            <div class="skill">Color Grading</div>
+        </div>
+        <a href="https://linktr.ee/dragonedit" class="btn">SECURE AN EDIT</a>
+    </section>
+
+    <h2 class="section-title">Latest Shorts</h2>
+    <div class="shorts-grid">
+        <div class="short-card"><iframe src="https://www.youtube-nocookie.com/embed/Lx4hWniTEpE" allowfullscreen></iframe></div>
+        <div class="short-card"><iframe src="https://www.youtube-nocookie.com/embed/tRkDxGzcSdE" allowfullscreen></iframe></div>
+        <div class="short-card"><iframe src="https://www.youtube-nocookie.com/embed/Rg5vCBetb-Y" allowfullscreen></iframe></div>
+        <div class="short-card"><iframe src="https://www.youtube-nocookie.com/embed/hdEu59PVV0w" allowfullscreen></iframe></div>
+        <div class="short-card"><iframe src="https://www.youtube-nocookie.com/embed/idSV63GmJXY" allowfullscreen></iframe></div>
+        <div class="short-card"><iframe src="https://www.youtube-nocookie.com/embed/YCGmblTXQjc" allowfullscreen></iframe></div>
+        <div class="short-card"><iframe src="https://www.youtube-nocookie.com/embed/LXy5_TacMx0" allowfullscreen></iframe></div>
+    </div>
+
+    <section class="cta">
+        <h2>Ready to change the game?</h2>
+        <br><br>
+        <a href="https://linktr.ee/dragonedit" class="btn">VISIT MY LINKTREE</a>
+    </section>
+
+</body>
+</html>
