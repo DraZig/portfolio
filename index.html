@@ -735,6 +735,12 @@
     <div class="modal-inner">
       <button class="modal-close" id="modalClose">✕</button>
       <iframe id="modalFrame" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div id="modalFallback" style="display:none;flex-direction:column;align-items:center;justify-content:center;gap:20px;height:100%;background:#0a0a0a;text-align:center;padding:32px;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="#ff4d00"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+        <p style="color:#fff;font-size:1rem;font-weight:600;">Embedding disabled on this video</p>
+        <p style="color:#888;font-size:0.85rem;line-height:1.5;">Enable it in YouTube Studio:<br>Edit video → More options → Allow embedding</p>
+        <a id="modalFallbackLink" href="#" target="_blank" rel="noopener" style="background:var(--orange);color:#fff;padding:14px 32px;border-radius:50px;text-decoration:none;font-weight:700;font-size:0.9rem;">Watch on YouTube ↗</a>
+      </div>
     </div>
   </div>
   </section>
@@ -871,19 +877,43 @@
     const modal = document.getElementById('modal');
     const modalFrame = document.getElementById('modalFrame');
     const modalClose = document.getElementById('modalClose');
+    const modalFallback = document.getElementById('modalFallback');
+    const modalFallbackLink = document.getElementById('modalFallbackLink');
+    let currentVid = '';
 
     document.querySelectorAll('.short-card[data-vid]').forEach(card => {
       card.addEventListener('click', () => {
-        const vid = card.dataset.vid;
-        modalFrame.src = `https://www.youtube.com/embed/${vid}?autoplay=1&rel=0`;
+        currentVid = card.dataset.vid;
+        modalFrame.style.display = 'block';
+        modalFallback.style.display = 'none';
+        modalFrame.src = `https://www.youtube.com/embed/${currentVid}?autoplay=1&rel=0&enablejsapi=1`;
         modal.classList.add('open');
         document.body.style.overflow = 'hidden';
       });
     });
 
+    // Detect YouTube embed errors via postMessage
+    window.addEventListener('message', e => {
+      try {
+        const data = JSON.parse(e.data);
+        if (data.event === 'infoDelivery' && data.info && data.info.playerState === undefined) return;
+        if (data.event === 'onError' && (data.info === 101 || data.info === 150 || data.info === 100)) {
+          showFallback();
+        }
+      } catch {}
+    });
+
+    function showFallback() {
+      modalFrame.style.display = 'none';
+      modalFrame.src = '';
+      modalFallbackLink.href = `https://www.youtube.com/shorts/${currentVid}`;
+      modalFallback.style.display = 'flex';
+    }
+
     function closeModal() {
       modal.classList.remove('open');
       modalFrame.src = '';
+      modalFallback.style.display = 'none';
       document.body.style.overflow = '';
     }
 
