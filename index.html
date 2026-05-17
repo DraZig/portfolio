@@ -31,6 +31,8 @@
     }
 
     /* ─── NAV ─────────────────────────────────────────── */
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -42,7 +44,7 @@
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid transparent;
-      transition: border-color 0.3s, background 0.3s;
+      transition: border-color 0.3s var(--ease-out), background 0.3s var(--ease-out);
     }
     nav.scrolled {
       border-color: var(--border);
@@ -78,13 +80,14 @@
       letter-spacing: 0.5px !important;
       text-transform: uppercase !important;
       font-size: 0.8rem !important;
-      transition: box-shadow 0.3s, transform 0.2s !important;
+      transition: box-shadow 0.3s var(--ease-out), transform 0.2s var(--ease-out) !important;
     }
     .nav-cta:hover {
       box-shadow: 0 0 30px var(--orange-glow);
       transform: translateY(-1px);
       color: #fff !important;
     }
+    .nav-cta:active { transform: scale(0.97) !important; }
 
     /* ─── HERO ────────────────────────────────────────── */
     .hero {
@@ -156,7 +159,7 @@
       color: var(--orange);
       margin-bottom: 24px;
       opacity: 0;
-      animation: fadeUp 0.8s 0.2s forwards;
+      animation: fadeUp 0.8s 0.2s var(--ease-out) forwards;
     }
 
     .hero-title {
@@ -166,7 +169,7 @@
       line-height: 0.9;
       margin-bottom: 32px;
       opacity: 0;
-      animation: fadeUp 0.8s 0.4s forwards;
+      animation: fadeUp 0.8s 0.4s var(--ease-out) forwards;
       background: linear-gradient(135deg, #fff 40%, rgba(255,77,0,0.8) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -180,7 +183,7 @@
       text-transform: uppercase;
       margin-bottom: 48px;
       opacity: 0;
-      animation: fadeUp 0.8s 0.6s forwards;
+      animation: fadeUp 0.8s 0.6s var(--ease-out) forwards;
     }
 
     .hero-tags {
@@ -190,7 +193,7 @@
       flex-wrap: wrap;
       margin-bottom: 56px;
       opacity: 0;
-      animation: fadeUp 0.8s 0.8s forwards;
+      animation: fadeUp 0.8s 0.8s var(--ease-out) forwards;
     }
     .tag {
       border: 1px solid var(--border);
@@ -210,7 +213,7 @@
       flex-wrap: wrap;
       justify-content: center;
       opacity: 0;
-      animation: fadeUp 0.8s 1s forwards;
+      animation: fadeUp 0.8s 1s var(--ease-out) forwards;
     }
     .btn-primary {
       background: var(--orange);
@@ -221,12 +224,13 @@
       font-weight: 700;
       font-size: 1rem;
       letter-spacing: 0.5px;
-      transition: box-shadow 0.3s, transform 0.2s;
+      transition: box-shadow 0.3s var(--ease-out), transform 0.2s var(--ease-out);
     }
     .btn-primary:hover {
       box-shadow: 0 0 50px var(--orange-glow);
       transform: translateY(-3px);
     }
+    .btn-primary:active { transform: scale(0.97); }
     .btn-ghost {
       border: 1px solid var(--border);
       background: var(--surface);
@@ -237,12 +241,13 @@
       font-weight: 600;
       font-size: 1rem;
       backdrop-filter: blur(10px);
-      transition: border-color 0.3s, transform 0.2s;
+      transition: border-color 0.3s var(--ease-out), transform 0.2s var(--ease-out);
     }
     .btn-ghost:hover {
       border-color: rgba(255,255,255,0.3);
       transform: translateY(-3px);
     }
+    .btn-ghost:active { transform: scale(0.97); }
 
     .scroll-hint {
       position: absolute;
@@ -258,7 +263,7 @@
       letter-spacing: 3px;
       text-transform: uppercase;
       opacity: 0;
-      animation: fadeUp 1s 1.4s forwards;
+      animation: fadeUp 1s 1.4s var(--ease-out) forwards;
     }
     .scroll-hint::after {
       content: '';
@@ -344,7 +349,7 @@
       border: 1px solid var(--border);
       background: #0a0a0a;
       position: relative;
-      transition: transform 0.4s cubic-bezier(.175,.885,.32,1.275), border-color 0.3s, box-shadow 0.4s;
+      transition: transform 0.4s var(--ease-out), border-color 0.3s var(--ease-out), box-shadow 0.4s var(--ease-out);
       cursor: pointer;
       display: block;
       text-decoration: none;
@@ -359,7 +364,7 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.4s ease;
+      transition: transform 0.3s var(--ease-out);
     }
     .short-card:hover .short-thumb { transform: scale(1.05); }
     .short-overlay {
@@ -370,7 +375,7 @@
       align-items: center;
       justify-content: center;
       opacity: 0;
-      transition: opacity 0.3s;
+      transition: opacity 0.3s var(--ease-out);
     }
     .short-card:hover .short-overlay { opacity: 1; }
     .play-btn {
@@ -381,7 +386,7 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-      transition: transform 0.2s;
+      transition: transform 0.2s var(--ease-out);
     }
     .short-card:hover .play-btn { transform: scale(1.1); }
     .play-btn svg { margin-left: 4px; }
@@ -461,7 +466,7 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
-      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s, background 0.3s;
+      transition: transform 0.3s var(--ease-out), border-color 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out), background 0.3s var(--ease-out);
       backdrop-filter: blur(10px);
       position: relative;
       overflow: hidden;
@@ -524,7 +529,7 @@
     .social-arrow {
       margin-top: auto;
       font-size: 1.4rem;
-      transition: transform 0.3s;
+      transition: transform 0.3s var(--ease-out);
     }
     .social-card:hover .social-arrow { transform: translate(4px, -4px); }
 
@@ -569,11 +574,35 @@
     .reveal {
       opacity: 0;
       transform: translateY(40px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
     }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
     /* ─── RESPONSIVE ──────────────────────────────────── */
+    /* Only show hover effects on devices that support hover */
+    @media not (hover: hover) {
+      .short-card:hover,
+      .social-card:hover,
+      .btn-primary:hover,
+      .btn-ghost:hover,
+      .nav-cta:hover { transform: none; box-shadow: none; }
+    }
+
+    /* Respect prefers-reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      .orb { animation: none; }
+      #particles { display: none; }
+      .hero-eyebrow, .hero-title, .hero-sub, .hero-tags, .hero-btns, .scroll-hint {
+        opacity: 1;
+        animation: none;
+      }
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+
     @media (max-width: 900px) {
       nav { padding: 18px 24px; }
       .nav-links { display: none; }
