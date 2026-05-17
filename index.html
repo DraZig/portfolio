@@ -386,53 +386,6 @@
     .short-card:hover .play-btn { transform: scale(1.1); }
     .play-btn svg { margin-left: 4px; }
 
-    /* ─── MODAL ───────────────────────────────────────── */
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.92);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s;
-      backdrop-filter: blur(12px);
-    }
-    .modal-backdrop.open {
-      opacity: 1;
-      pointer-events: all;
-    }
-    .modal-inner {
-      position: relative;
-      width: min(360px, 90vw);
-      aspect-ratio: 9/16;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 40px 100px rgba(0,0,0,0.8), 0 0 60px var(--orange-glow);
-      transform: scale(0.9);
-      transition: transform 0.3s cubic-bezier(.175,.885,.32,1.275);
-    }
-    .modal-backdrop.open .modal-inner { transform: scale(1); }
-    .modal-inner iframe {
-      width: 100%; height: 100%;
-      border: none;
-    }
-    .modal-close {
-      position: absolute;
-      top: -48px;
-      right: 0;
-      background: none;
-      border: none;
-      color: #fff;
-      font-size: 2rem;
-      cursor: pointer;
-      line-height: 1;
-      opacity: 0.7;
-      transition: opacity 0.2s, transform 0.2s;
-    }
-    .modal-close:hover { opacity: 1; transform: scale(1.2); }
 
     /* ─── ABOUT ───────────────────────────────────────── */
     #about {
@@ -700,49 +653,35 @@
       <p class="section-desc">Cinematic NBA highlights, 3D motion sequences, and viral-ready short-form content.</p>
     </div>
     <div class="shorts-grid">
-      <div class="short-card reveal" data-vid="Lx4hWniTEpE">
+      <a class="short-card reveal" href="https://www.youtube.com/shorts/Lx4hWniTEpE" target="_blank" rel="noopener">
         <img class="short-thumb" src="https://img.youtube.com/vi/Lx4hWniTEpE/hqdefault.jpg" alt="NBA Edit" loading="lazy">
         <div class="short-overlay"><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#ff4d00"><path d="M8 5v14l11-7z"/></svg></div></div>
-      </div>
-      <div class="short-card reveal" data-vid="tRkDxGzcSdE">
+      </a>
+      <a class="short-card reveal" href="https://www.youtube.com/shorts/tRkDxGzcSdE" target="_blank" rel="noopener">
         <img class="short-thumb" src="https://img.youtube.com/vi/tRkDxGzcSdE/hqdefault.jpg" alt="NBA Edit" loading="lazy">
         <div class="short-overlay"><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#ff4d00"><path d="M8 5v14l11-7z"/></svg></div></div>
-      </div>
-      <div class="short-card reveal" data-vid="Rg5vCBetb-Y">
+      </a>
+      <a class="short-card reveal" href="https://www.youtube.com/shorts/Rg5vCBetb-Y" target="_blank" rel="noopener">
         <img class="short-thumb" src="https://img.youtube.com/vi/Rg5vCBetb-Y/hqdefault.jpg" alt="NBA Edit" loading="lazy">
         <div class="short-overlay"><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#ff4d00"><path d="M8 5v14l11-7z"/></svg></div></div>
-      </div>
-      <div class="short-card reveal" data-vid="hdEu59PVV0w">
+      </a>
+      <a class="short-card reveal" href="https://www.youtube.com/shorts/hdEu59PVV0w" target="_blank" rel="noopener">
         <img class="short-thumb" src="https://img.youtube.com/vi/hdEu59PVV0w/hqdefault.jpg" alt="NBA Edit" loading="lazy">
         <div class="short-overlay"><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#ff4d00"><path d="M8 5v14l11-7z"/></svg></div></div>
-      </div>
-      <div class="short-card reveal" data-vid="idSV63GmJXY">
+      </a>
+      <a class="short-card reveal" href="https://www.youtube.com/shorts/idSV63GmJXY" target="_blank" rel="noopener">
         <img class="short-thumb" src="https://img.youtube.com/vi/idSV63GmJXY/hqdefault.jpg" alt="NBA Edit" loading="lazy">
         <div class="short-overlay"><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#ff4d00"><path d="M8 5v14l11-7z"/></svg></div></div>
-      </div>
-      <div class="short-card reveal" data-vid="YCGmblTXQjc">
+      </a>
+      <a class="short-card reveal" href="https://www.youtube.com/shorts/YCGmblTXQjc" target="_blank" rel="noopener">
         <img class="short-thumb" src="https://img.youtube.com/vi/YCGmblTXQjc/hqdefault.jpg" alt="NBA Edit" loading="lazy">
         <div class="short-overlay"><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#ff4d00"><path d="M8 5v14l11-7z"/></svg></div></div>
-      </div>
-      <div class="short-card reveal" data-vid="LXy5_TacMx0">
+      </a>
+      <a class="short-card reveal" href="https://www.youtube.com/shorts/LXy5_TacMx0" target="_blank" rel="noopener">
         <img class="short-thumb" src="https://img.youtube.com/vi/LXy5_TacMx0/hqdefault.jpg" alt="NBA Edit" loading="lazy">
         <div class="short-overlay"><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#ff4d00"><path d="M8 5v14l11-7z"/></svg></div></div>
-      </div>
+      </a>
     </div>
-
-  <!-- VIDEO MODAL -->
-  <div class="modal-backdrop" id="modal">
-    <div class="modal-inner">
-      <button class="modal-close" id="modalClose">✕</button>
-      <iframe id="modalFrame" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      <div id="modalFallback" style="display:none;flex-direction:column;align-items:center;justify-content:center;gap:20px;height:100%;background:#0a0a0a;text-align:center;padding:32px;">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="#ff4d00"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-        <p style="color:#fff;font-size:1rem;font-weight:600;">Embedding disabled on this video</p>
-        <p style="color:#888;font-size:0.85rem;line-height:1.5;">Enable it in YouTube Studio:<br>Edit video → More options → Allow embedding</p>
-        <a id="modalFallbackLink" href="#" target="_blank" rel="noopener" style="background:var(--orange);color:#fff;padding:14px 32px;border-radius:50px;text-decoration:none;font-weight:700;font-size:0.9rem;">Watch on YouTube ↗</a>
-      </div>
-    </div>
-  </div>
   </section>
 
   <!-- ABOUT -->
@@ -873,53 +812,6 @@
       nav.classList.toggle('scrolled', window.scrollY > 40);
     }, { passive: true });
 
-    // Modal
-    const modal = document.getElementById('modal');
-    const modalFrame = document.getElementById('modalFrame');
-    const modalClose = document.getElementById('modalClose');
-    const modalFallback = document.getElementById('modalFallback');
-    const modalFallbackLink = document.getElementById('modalFallbackLink');
-    let currentVid = '';
-
-    document.querySelectorAll('.short-card[data-vid]').forEach(card => {
-      card.addEventListener('click', () => {
-        currentVid = card.dataset.vid;
-        modalFrame.style.display = 'block';
-        modalFallback.style.display = 'none';
-        modalFrame.src = `https://www.youtube.com/embed/${currentVid}?autoplay=1&rel=0&enablejsapi=1`;
-        modal.classList.add('open');
-        document.body.style.overflow = 'hidden';
-      });
-    });
-
-    // Detect YouTube embed errors via postMessage
-    window.addEventListener('message', e => {
-      try {
-        const data = JSON.parse(e.data);
-        if (data.event === 'infoDelivery' && data.info && data.info.playerState === undefined) return;
-        if (data.event === 'onError' && (data.info === 101 || data.info === 150 || data.info === 100)) {
-          showFallback();
-        }
-      } catch {}
-    });
-
-    function showFallback() {
-      modalFrame.style.display = 'none';
-      modalFrame.src = '';
-      modalFallbackLink.href = `https://www.youtube.com/shorts/${currentVid}`;
-      modalFallback.style.display = 'flex';
-    }
-
-    function closeModal() {
-      modal.classList.remove('open');
-      modalFrame.src = '';
-      modalFallback.style.display = 'none';
-      document.body.style.overflow = '';
-    }
-
-    modalClose.addEventListener('click', closeModal);
-    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
     // Intersection Observer for reveal + skill bars
     const observer = new IntersectionObserver((entries) => {
