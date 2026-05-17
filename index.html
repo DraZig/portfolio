@@ -4,22 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dragon | NBA Video Editor</title>
-  <meta name="description" content="Dragon, NBA video editor specializing in 3D edits, motion graphics, and cinematic highlights." />
+  <meta name="description" content="Dragon — NBA video editor specializing in 3D edits, motion graphics, and cinematic highlights." />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --orange:      oklch(0.63 0.22 35);
-      --orange-dim:  oklch(0.63 0.22 35 / 0.15);
-      --orange-glow: oklch(0.63 0.22 35 / 0.40);
-      --blue:        oklch(0.56 0.20 260);
-      --bg:          oklch(0.05 0.008 35);
-      --bg-2:        oklch(0.07 0.007 35);
-      --surface:     oklch(0.98 0.004 80 / 0.04);
-      --border:      oklch(0.98 0.004 80 / 0.08);
-      --text:        oklch(0.98 0.004 80);
-      --muted:       oklch(0.56 0.008 35);
-      --ease:        cubic-bezier(0.16, 1, 0.3, 1);
+      --orange: #ff4d00;
+      --orange-dim: rgba(255, 77, 0, 0.15);
+      --orange-glow: rgba(255, 77, 0, 0.4);
+      --blue: #007aff;
+      --blue-glow: rgba(0, 122, 255, 0.35);
+      --bg: #000;
+      --surface: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.08);
+      --text: #fff;
+      --muted: #888;
     }
 
     html { scroll-behavior: smooth; }
@@ -43,11 +42,11 @@
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid transparent;
-      transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
+      transition: border-color 0.3s, background 0.3s;
     }
     nav.scrolled {
       border-color: var(--border);
-      background: oklch(0.05 0.008 35 / 0.75);
+      background: rgba(0,0,0,0.7);
     }
     .nav-logo {
       font-size: 1.3rem;
@@ -67,23 +66,24 @@
       font-size: 0.85rem;
       letter-spacing: 1px;
       text-transform: uppercase;
-      transition: color 0.2s var(--ease);
+      transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--text); }
     .nav-cta {
       background: var(--orange);
-      color: var(--text) !important;
+      color: #fff !important;
       padding: 10px 24px;
       border-radius: 50px;
       font-weight: 700 !important;
       letter-spacing: 0.5px !important;
       text-transform: uppercase !important;
       font-size: 0.8rem !important;
-      transition: box-shadow 0.3s var(--ease), transform 0.3s var(--ease) !important;
+      transition: box-shadow 0.3s, transform 0.2s !important;
     }
     .nav-cta:hover {
       box-shadow: 0 0 30px var(--orange-glow);
       transform: translateY(-1px);
+      color: #fff !important;
     }
 
     /* ─── HERO ────────────────────────────────────────── */
@@ -98,14 +98,19 @@
       position: relative;
       overflow: hidden;
     }
+
+    /* Court lines */
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 60% 50% at 50% 110%, oklch(0.63 0.22 35 / 0.12) 0%, transparent 70%);
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 110%, rgba(255,77,0,0.12) 0%, transparent 70%),
+        radial-gradient(circle at 50% 50%, transparent 200px, transparent 201px);
       pointer-events: none;
     }
 
+    /* Animated orbs */
     .orb {
       position: absolute;
       border-radius: 50%;
@@ -116,20 +121,20 @@
     }
     .orb-1 {
       width: 500px; height: 500px;
-      background: radial-gradient(circle, oklch(0.63 0.22 35 / 0.3), transparent 70%);
+      background: radial-gradient(circle, rgba(255,77,0,0.3), transparent 70%);
       top: -100px; left: -100px;
       animation-duration: 14s;
     }
     .orb-2 {
       width: 400px; height: 400px;
-      background: radial-gradient(circle, oklch(0.56 0.20 260 / 0.2), transparent 70%);
+      background: radial-gradient(circle, rgba(0,122,255,0.2), transparent 70%);
       bottom: -80px; right: -80px;
       animation-duration: 10s;
       animation-delay: -5s;
     }
     .orb-3 {
       width: 300px; height: 300px;
-      background: radial-gradient(circle, oklch(0.63 0.22 35 / 0.15), transparent 70%);
+      background: radial-gradient(circle, rgba(255,77,0,0.15), transparent 70%);
       top: 40%; right: 10%;
       animation-duration: 18s;
       animation-delay: -3s;
@@ -137,10 +142,11 @@
 
     @keyframes drift {
       0%, 100% { transform: translate(0, 0); }
-      33%       { transform: translate(40px, -30px); }
-      66%       { transform: translate(-20px, 40px); }
+      33% { transform: translate(40px, -30px); }
+      66% { transform: translate(-20px, 40px); }
     }
 
+    /* Canvas for particles */
     #particles { position: absolute; inset: 0; pointer-events: none; }
 
     .hero-eyebrow {
@@ -150,18 +156,23 @@
       color: var(--orange);
       margin-bottom: 24px;
       opacity: 0;
-      animation: fadeUp 0.8s 0.2s var(--ease) forwards;
+      animation: fadeUp 0.8s 0.2s forwards;
     }
+
     .hero-title {
       font-size: clamp(5rem, 18vw, 13rem);
       font-weight: 900;
       letter-spacing: -6px;
       line-height: 0.9;
       margin-bottom: 32px;
-      color: var(--text);
       opacity: 0;
-      animation: fadeUp 0.8s 0.4s var(--ease) forwards;
+      animation: fadeUp 0.8s 0.4s forwards;
+      background: linear-gradient(135deg, #fff 40%, rgba(255,77,0,0.8) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
+
     .hero-sub {
       font-size: clamp(1rem, 2.5vw, 1.25rem);
       color: var(--muted);
@@ -169,8 +180,9 @@
       text-transform: uppercase;
       margin-bottom: 48px;
       opacity: 0;
-      animation: fadeUp 0.8s 0.6s var(--ease) forwards;
+      animation: fadeUp 0.8s 0.6s forwards;
     }
+
     .hero-tags {
       display: flex;
       gap: 12px;
@@ -178,15 +190,17 @@
       flex-wrap: wrap;
       margin-bottom: 56px;
       opacity: 0;
-      animation: fadeUp 0.8s 0.8s var(--ease) forwards;
+      animation: fadeUp 0.8s 0.8s forwards;
     }
     .tag {
       border: 1px solid var(--border);
+      background: var(--surface);
       padding: 9px 22px;
       border-radius: 50px;
       font-size: 0.8rem;
       letter-spacing: 1px;
-      transition: border-color 0.3s var(--ease), color 0.3s var(--ease);
+      backdrop-filter: blur(10px);
+      transition: border-color 0.3s, color 0.3s;
     }
     .tag:hover { border-color: var(--orange); color: var(--orange); }
 
@@ -196,18 +210,18 @@
       flex-wrap: wrap;
       justify-content: center;
       opacity: 0;
-      animation: fadeUp 0.8s 1s var(--ease) forwards;
+      animation: fadeUp 0.8s 1s forwards;
     }
     .btn-primary {
       background: var(--orange);
-      color: var(--text);
+      color: #fff;
       padding: 18px 52px;
       border-radius: 50px;
       text-decoration: none;
       font-weight: 700;
       font-size: 1rem;
       letter-spacing: 0.5px;
-      transition: box-shadow 0.3s var(--ease), transform 0.3s var(--ease);
+      transition: box-shadow 0.3s, transform 0.2s;
     }
     .btn-primary:hover {
       box-shadow: 0 0 50px var(--orange-glow);
@@ -215,16 +229,18 @@
     }
     .btn-ghost {
       border: 1px solid var(--border);
+      background: var(--surface);
       color: var(--text);
       padding: 18px 52px;
       border-radius: 50px;
       text-decoration: none;
       font-weight: 600;
       font-size: 1rem;
-      transition: border-color 0.3s var(--ease), transform 0.3s var(--ease);
+      backdrop-filter: blur(10px);
+      transition: border-color 0.3s, transform 0.2s;
     }
     .btn-ghost:hover {
-      border-color: oklch(0.98 0.004 80 / 0.3);
+      border-color: rgba(255,255,255,0.3);
       transform: translateY(-3px);
     }
 
@@ -242,7 +258,7 @@
       letter-spacing: 3px;
       text-transform: uppercase;
       opacity: 0;
-      animation: fadeUp 1s 1.4s var(--ease) forwards;
+      animation: fadeUp 1s 1.4s forwards;
     }
     .scroll-hint::after {
       content: '';
@@ -252,9 +268,10 @@
       animation: scrollLine 2s ease-in-out infinite;
     }
     @keyframes scrollLine {
-      0%, 100% { opacity: 0.4; }
-      50%       { opacity: 1; }
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.2); }
     }
+
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(30px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -311,7 +328,7 @@
     .section-header { max-width: 1200px; margin: 0 auto 60px; }
 
     /* ─── WORK / SHORTS ───────────────────────────────── */
-    #work { background: var(--bg); }
+    #work { background: #000; }
 
     .shorts-grid {
       max-width: 1300px;
@@ -325,9 +342,9 @@
       border-radius: 20px;
       overflow: hidden;
       border: 1px solid var(--border);
-      background: var(--bg-2);
+      background: #0a0a0a;
       position: relative;
-      transition: transform 0.5s var(--ease), border-color 0.3s var(--ease), box-shadow 0.5s var(--ease);
+      transition: transform 0.4s cubic-bezier(.175,.885,.32,1.275), border-color 0.3s, box-shadow 0.4s;
       cursor: pointer;
       display: block;
       text-decoration: none;
@@ -335,43 +352,44 @@
     .short-card:hover {
       transform: translateY(-12px) scale(1.02);
       border-color: var(--orange);
-      box-shadow: 0 30px 60px oklch(0 0 0 / 0.5), 0 0 30px var(--orange-glow);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 30px var(--orange-glow);
     }
     .short-thumb {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.5s var(--ease);
+      transition: transform 0.4s ease;
     }
     .short-card:hover .short-thumb { transform: scale(1.05); }
     .short-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, oklch(0 0 0 / 0.7) 0%, transparent 50%);
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
       display: flex;
       align-items: center;
       justify-content: center;
       opacity: 0;
-      transition: opacity 0.3s var(--ease);
+      transition: opacity 0.3s;
     }
     .short-card:hover .short-overlay { opacity: 1; }
     .play-btn {
       width: 64px; height: 64px;
       border-radius: 50%;
-      background: oklch(0.98 0.004 80 / 0.95);
+      background: rgba(255,255,255,0.95);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 8px 32px oklch(0 0 0 / 0.4);
-      transition: transform 0.3s var(--ease);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      transition: transform 0.2s;
     }
-    .short-card:hover .play-btn { transform: scale(1.12); }
+    .short-card:hover .play-btn { transform: scale(1.1); }
     .play-btn svg { margin-left: 4px; }
+
 
     /* ─── ABOUT ───────────────────────────────────────── */
     #about {
-      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+      background: linear-gradient(180deg, #000 0%, #080808 100%);
       border-top: 1px solid var(--border);
     }
     .about-inner {
@@ -386,13 +404,24 @@
       color: var(--muted);
       line-height: 1.8;
       font-size: 1.05rem;
-      max-width: 52ch;
       margin-bottom: 20px;
     }
     .about-text p strong { color: var(--text); }
-    .about-skills { display: flex; flex-direction: column; gap: 16px; }
-    .skill-row { display: flex; flex-direction: column; gap: 8px; }
-    .skill-info { display: flex; justify-content: space-between; font-size: 0.85rem; }
+    .about-skills {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .skill-row {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .skill-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+    }
     .skill-name { font-weight: 600; }
     .skill-pct { color: var(--orange); font-weight: 700; }
     .skill-bar {
@@ -404,21 +433,22 @@
     .skill-fill {
       height: 100%;
       border-radius: 4px;
-      background: var(--orange);
+      background: linear-gradient(90deg, var(--orange), #ff8c42);
       transform-origin: left;
       transform: scaleX(0);
-      transition: transform 1.2s var(--ease);
+      transition: transform 1.2s cubic-bezier(.22,1,.36,1);
     }
     .skill-fill.animated { transform: scaleX(1); }
 
     /* ─── SOCIAL LINKS ────────────────────────────────── */
-    #connect { border-top: 1px solid var(--border); }
-
+    #connect {
+      border-top: 1px solid var(--border);
+    }
     .social-grid {
       max-width: 1200px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 2fr 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 20px;
     }
     .social-card {
@@ -431,7 +461,8 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
-      transition: transform 0.4s var(--ease), border-color 0.3s var(--ease), box-shadow 0.4s var(--ease);
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s, background 0.3s;
+      backdrop-filter: blur(10px);
       position: relative;
       overflow: hidden;
     }
@@ -440,24 +471,26 @@
       position: absolute;
       inset: 0;
       opacity: 0;
-      transition: opacity 0.3s var(--ease);
+      transition: opacity 0.3s;
       border-radius: inherit;
     }
-    .social-card:hover { transform: translateY(-6px); }
+    .social-card:hover {
+      transform: translateY(-8px);
+    }
 
-    .card-yt { grid-column: span 2; flex-direction: row; align-items: center; gap: 32px; }
-    .card-yt .social-body { flex: 1; }
-    .card-yt .social-arrow { margin-top: 0; margin-left: auto; flex-shrink: 0; }
+    /* Per-platform colors */
+    .card-yt::before  { background: radial-gradient(circle at 0% 0%, rgba(255,0,0,0.12), transparent 60%); }
+    .card-tt::before  { background: radial-gradient(circle at 0% 0%, rgba(0,242,234,0.08), transparent 60%); }
+    .card-lt::before  { background: radial-gradient(circle at 0% 0%, rgba(57,209,73,0.1), transparent 60%); }
+    .card-dm::before  { background: radial-gradient(circle at 0% 0%, rgba(255,77,0,0.12), transparent 60%); }
 
-    .card-yt::before  { background: radial-gradient(circle at 0% 50%, oklch(0.53 0.28 25 / 0.1), transparent 60%); }
-    .card-tt::before  { background: radial-gradient(circle at 0% 0%, oklch(0.9 0.12 190 / 0.08), transparent 60%); }
-    .card-lt::before  { background: radial-gradient(circle at 0% 0%, oklch(0.75 0.18 145 / 0.1), transparent 60%); }
+    .card-yt:hover  { border-color: rgba(255,0,0,0.5); box-shadow: 0 20px 40px rgba(255,0,0,0.15); }
+    .card-tt:hover  { border-color: rgba(0,242,234,0.4); box-shadow: 0 20px 40px rgba(0,242,234,0.1); }
+    .card-lt:hover  { border-color: rgba(57,209,73,0.4); box-shadow: 0 20px 40px rgba(57,209,73,0.1); }
+    .card-dm:hover  { border-color: var(--orange); box-shadow: 0 20px 40px var(--orange-glow); }
 
-    .card-yt:hover { border-color: oklch(0.53 0.28 25 / 0.5); box-shadow: 0 20px 40px oklch(0.53 0.28 25 / 0.12); }
-    .card-tt:hover { border-color: oklch(0.9 0.12 190 / 0.4);  box-shadow: 0 20px 40px oklch(0.9 0.12 190 / 0.08); }
-    .card-lt:hover { border-color: oklch(0.75 0.18 145 / 0.4); box-shadow: 0 20px 40px oklch(0.75 0.18 145 / 0.08); }
-
-    .card-yt:hover::before, .card-tt:hover::before, .card-lt:hover::before { opacity: 1; }
+    .card-yt:hover::before, .card-tt:hover::before,
+    .card-lt:hover::before, .card-dm:hover::before { opacity: 1; }
 
     .social-icon {
       width: 52px; height: 52px;
@@ -465,64 +498,42 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
+      font-size: 1.5rem;
     }
-    .icon-yt { background: oklch(0.53 0.28 25 / 0.15); }
-    .icon-tt { background: oklch(0.15 0.005 35); border: 1px solid var(--border); }
-    .icon-lt { background: oklch(0.75 0.18 145 / 0.1); }
+    .icon-yt { background: rgba(255,0,0,0.15); }
+    .icon-tt { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.08); }
+    .icon-lt { background: rgba(57,209,73,0.1); }
+    .icon-dm { background: var(--orange-dim); }
 
-    .social-platform { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); }
-    .social-handle   { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.5px; }
-    .social-desc     { font-size: 0.85rem; color: var(--muted); line-height: 1.5; max-width: 52ch; }
-    .social-arrow    { margin-top: auto; font-size: 1.4rem; transition: transform 0.3s var(--ease); }
-    .social-card:hover .social-arrow { transform: translate(4px, -4px); }
-
-    /* Commission CTA — different structure, not a card */
-    .commission-strip {
-      grid-column: span 2;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 48px 52px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 32px;
-      background: var(--orange-dim);
-      text-decoration: none;
-      color: var(--text);
-      transition: border-color 0.3s var(--ease), box-shadow 0.4s var(--ease), transform 0.4s var(--ease);
+    .social-platform {
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
     }
-    .commission-strip:hover {
-      border-color: var(--orange);
-      box-shadow: 0 20px 60px var(--orange-glow);
-      transform: translateY(-4px);
-    }
-    .commission-left { display: flex; flex-direction: column; gap: 8px; }
-    .commission-label { font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; color: var(--orange); }
-    .commission-title { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 800; letter-spacing: -1px; }
-    .commission-sub { font-size: 0.9rem; color: var(--muted); }
-    .commission-btn {
-      background: var(--orange);
-      color: var(--text);
-      padding: 16px 40px;
-      border-radius: 50px;
+    .social-handle {
+      font-size: 1.2rem;
       font-weight: 700;
-      font-size: 0.95rem;
-      white-space: nowrap;
-      flex-shrink: 0;
-      transition: box-shadow 0.3s var(--ease), transform 0.3s var(--ease);
+      letter-spacing: -0.5px;
     }
-    .commission-strip:hover .commission-btn {
-      box-shadow: 0 0 40px var(--orange-glow);
-      transform: scale(1.04);
+    .social-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
     }
+    .social-arrow {
+      margin-top: auto;
+      font-size: 1.4rem;
+      transition: transform 0.3s;
+    }
+    .social-card:hover .social-arrow { transform: translate(4px, -4px); }
 
     /* ─── CTA ─────────────────────────────────────────── */
     #cta {
       text-align: center;
       padding: 140px 24px;
       border-top: 1px solid var(--border);
-      background: radial-gradient(ellipse 80% 60% at 50% 100%, oklch(0.63 0.22 35 / 0.08) 0%, transparent 70%);
+      background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(255,77,0,0.08) 0%, transparent 70%);
     }
     .cta-title {
       font-size: clamp(2.5rem, 7vw, 5rem);
@@ -530,7 +541,11 @@
       letter-spacing: -3px;
       margin-bottom: 20px;
     }
-    .cta-sub { color: var(--muted); font-size: 1.1rem; margin-bottom: 48px; }
+    .cta-sub {
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin-bottom: 48px;
+    }
     .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
     /* ─── FOOTER ──────────────────────────────────────── */
@@ -547,14 +562,14 @@
     }
     .footer-logo { color: var(--orange); font-weight: 900; font-size: 1rem; }
     .footer-links { display: flex; gap: 24px; }
-    .footer-links a { color: var(--muted); text-decoration: none; transition: color 0.2s var(--ease); }
+    .footer-links a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .footer-links a:hover { color: var(--text); }
 
-    /* ─── REVEAL ──────────────────────────────────────── */
+    /* ─── REVEAL ANIMATIONS ───────────────────────────── */
     .reveal {
       opacity: 0;
       transform: translateY(40px);
-      transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+      transition: opacity 0.8s ease, transform 0.8s ease;
     }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
@@ -565,10 +580,6 @@
       .stats-bar { grid-template-columns: repeat(2, 1fr); }
       .stat:nth-child(2) { border-right: none; }
       .about-inner { grid-template-columns: 1fr; gap: 48px; }
-      .social-grid { grid-template-columns: 1fr; }
-      .card-yt { flex-direction: column; grid-column: span 1; }
-      .card-yt .social-arrow { margin-top: auto; margin-left: 0; }
-      .commission-strip { grid-column: span 1; flex-direction: column; align-items: flex-start; }
     }
     @media (max-width: 600px) {
       .hero-title { letter-spacing: -3px; }
@@ -579,6 +590,7 @@
 </head>
 <body>
 
+  <!-- NAV -->
   <nav id="nav">
     <a href="#" class="nav-logo">DRAGON</a>
     <ul class="nav-links">
@@ -589,6 +601,7 @@
     </ul>
   </nav>
 
+  <!-- HERO -->
   <section class="hero">
     <canvas id="particles"></canvas>
     <div class="orb orb-1"></div>
@@ -612,9 +625,10 @@
     <div class="scroll-hint">Scroll</div>
   </section>
 
+  <!-- STATS -->
   <div class="stats-bar reveal">
     <div class="stat">
-      <div class="stat-num">100<span style="color:var(--text);font-size:0.6em">+</span></div>
+      <div class="stat-num">100<span style="color:#fff;font-size:0.6em">+</span></div>
       <div class="stat-label">Edits Delivered</div>
     </div>
     <div class="stat">
@@ -631,6 +645,7 @@
     </div>
   </div>
 
+  <!-- WORK -->
   <section id="work">
     <div class="section-header reveal">
       <p class="section-label">Portfolio</p>
@@ -640,42 +655,43 @@
     <div class="shorts-grid">
       <a class="short-card reveal" href="https://www.youtube.com/shorts/Lx4hWniTEpE" target="_blank" rel="noopener">
         <img class="short-thumb" src="https://img.youtube.com/vi/Lx4hWniTEpE/hqdefault.jpg" alt="NBA Edit" loading="lazy">
-        <div class="short-overlay"><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="var(--orange)"><path d="M8 5v14l11-7z"/></svg></div></div>
+        <div class="short-overlay"><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#ff4d00"><path d="M8 5v14l11-7z"/></svg></div></div>
       </a>
       <a class="short-card reveal" href="https://www.youtube.com/shorts/tRkDxGzcSdE" target="_blank" rel="noopener">
         <img class="short-thumb" src="https://img.youtube.com/vi/tRkDxGzcSdE/hqdefault.jpg" alt="NBA Edit" loading="lazy">
-        <div class="short-overlay"><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="var(--orange)"><path d="M8 5v14l11-7z"/></svg></div></div>
+        <div class="short-overlay"><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#ff4d00"><path d="M8 5v14l11-7z"/></svg></div></div>
       </a>
       <a class="short-card reveal" href="https://www.youtube.com/shorts/Rg5vCBetb-Y" target="_blank" rel="noopener">
         <img class="short-thumb" src="https://img.youtube.com/vi/Rg5vCBetb-Y/hqdefault.jpg" alt="NBA Edit" loading="lazy">
-        <div class="short-overlay"><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="var(--orange)"><path d="M8 5v14l11-7z"/></svg></div></div>
+        <div class="short-overlay"><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#ff4d00"><path d="M8 5v14l11-7z"/></svg></div></div>
       </a>
       <a class="short-card reveal" href="https://www.youtube.com/shorts/hdEu59PVV0w" target="_blank" rel="noopener">
         <img class="short-thumb" src="https://img.youtube.com/vi/hdEu59PVV0w/hqdefault.jpg" alt="NBA Edit" loading="lazy">
-        <div class="short-overlay"><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="var(--orange)"><path d="M8 5v14l11-7z"/></svg></div></div>
+        <div class="short-overlay"><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#ff4d00"><path d="M8 5v14l11-7z"/></svg></div></div>
       </a>
       <a class="short-card reveal" href="https://www.youtube.com/shorts/idSV63GmJXY" target="_blank" rel="noopener">
         <img class="short-thumb" src="https://img.youtube.com/vi/idSV63GmJXY/hqdefault.jpg" alt="NBA Edit" loading="lazy">
-        <div class="short-overlay"><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="var(--orange)"><path d="M8 5v14l11-7z"/></svg></div></div>
+        <div class="short-overlay"><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#ff4d00"><path d="M8 5v14l11-7z"/></svg></div></div>
       </a>
       <a class="short-card reveal" href="https://www.youtube.com/shorts/YCGmblTXQjc" target="_blank" rel="noopener">
         <img class="short-thumb" src="https://img.youtube.com/vi/YCGmblTXQjc/hqdefault.jpg" alt="NBA Edit" loading="lazy">
-        <div class="short-overlay"><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="var(--orange)"><path d="M8 5v14l11-7z"/></svg></div></div>
+        <div class="short-overlay"><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#ff4d00"><path d="M8 5v14l11-7z"/></svg></div></div>
       </a>
       <a class="short-card reveal" href="https://www.youtube.com/shorts/LXy5_TacMx0" target="_blank" rel="noopener">
         <img class="short-thumb" src="https://img.youtube.com/vi/LXy5_TacMx0/hqdefault.jpg" alt="NBA Edit" loading="lazy">
-        <div class="short-overlay"><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="var(--orange)"><path d="M8 5v14l11-7z"/></svg></div></div>
+        <div class="short-overlay"><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#ff4d00"><path d="M8 5v14l11-7z"/></svg></div></div>
       </a>
     </div>
   </section>
 
+  <!-- ABOUT -->
   <section id="about">
     <div class="about-inner">
       <div class="about-text reveal">
         <p class="section-label">About</p>
         <h2 class="section-title">The Editor<br>Behind the Fire</h2>
-        <p>I'm <strong>Dragon</strong>, an NBA video editor obsessed with turning raw basketball footage into cinematic art. Every edit is built to stop the scroll and leave an impression.</p>
-        <p>Specializing in <strong>3D motion graphics</strong>, <strong>After Effects workflows</strong>, and <strong>color grading</strong>, I create content that hits different: player tributes, viral shorts, hype reels for teams and brands.</p>
+        <p>I'm <strong>Dragon</strong> — an NBA video editor obsessed with turning raw basketball footage into cinematic art. Every edit is built to stop the scroll and leave an impression.</p>
+        <p>Specializing in <strong>3D motion graphics</strong>, <strong>After Effects workflows</strong>, and <strong>color grading</strong>, I create content that hits different — whether it's a player tribute, a viral short, or a hype reel for a team or brand.</p>
         <p>If you want your NBA content to look elite, you're in the right place.</p>
         <br/>
         <a href="https://linktr.ee/dragonedit" target="_blank" rel="noopener" class="btn-primary" style="display:inline-block;margin-top:8px;">Work with me</a>
@@ -683,89 +699,94 @@
       <div class="about-skills reveal">
         <div class="skill-row">
           <div class="skill-info"><span class="skill-name">After Effects / 3D</span><span class="skill-pct">95%</span></div>
-          <div class="skill-bar"><div class="skill-fill"></div></div>
+          <div class="skill-bar"><div class="skill-fill" style="--w:0.95"></div></div>
         </div>
         <div class="skill-row">
           <div class="skill-info"><span class="skill-name">Motion Graphics</span><span class="skill-pct">92%</span></div>
-          <div class="skill-bar"><div class="skill-fill"></div></div>
+          <div class="skill-bar"><div class="skill-fill" style="--w:0.92"></div></div>
         </div>
         <div class="skill-row">
           <div class="skill-info"><span class="skill-name">Color Grading</span><span class="skill-pct">90%</span></div>
-          <div class="skill-bar"><div class="skill-fill"></div></div>
+          <div class="skill-bar"><div class="skill-fill" style="--w:0.90"></div></div>
         </div>
         <div class="skill-row">
           <div class="skill-info"><span class="skill-name">Short-Form Content</span><span class="skill-pct">98%</span></div>
-          <div class="skill-bar"><div class="skill-fill"></div></div>
+          <div class="skill-bar"><div class="skill-fill" style="--w:0.98"></div></div>
         </div>
         <div class="skill-row">
           <div class="skill-info"><span class="skill-name">NBA Film Knowledge</span><span class="skill-pct">97%</span></div>
-          <div class="skill-bar"><div class="skill-fill"></div></div>
+          <div class="skill-bar"><div class="skill-fill" style="--w:0.97"></div></div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- CONNECT -->
   <section id="connect">
     <div class="section-header reveal">
       <p class="section-label">Find Me Online</p>
       <h2 class="section-title">Follow the Flame</h2>
-      <p class="section-desc">NBA edits, behind-the-scenes, and more across every platform.</p>
+      <p class="section-desc">NBA edits, behind-the-scenes, and more — follow along on every platform.</p>
     </div>
     <div class="social-grid">
 
       <a href="https://www.youtube.com/@Dragon-Editssz" target="_blank" rel="noopener" class="social-card card-yt reveal">
         <div class="social-icon icon-yt">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="oklch(0.53 0.28 25)"><path d="M23.5 6.2s-.2-1.7-1-2.4c-.9-1-1.9-1-2.4-1.1C16.8 2.5 12 2.5 12 2.5s-4.8 0-8.1.2c-.5.1-1.5.1-2.4 1.1-.8.7-1 2.4-1 2.4S.3 8.1.3 10v1.8c0 1.9.2 3.8.2 3.8s.2 1.7 1 2.4c.9 1 2.1.9 2.6 1 1.9.2 8 .2 8 .2s4.8 0 8.1-.3c.5-.1 1.5-.1 2.4-1.1.8-.7 1-2.4 1-2.4s.2-1.9.2-3.8V10c0-1.9-.3-3.8-.3-3.8zM9.7 15.5V8.4l6.6 3.6-6.6 3.5z"/></svg>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="#ff0000"><path d="M23.5 6.2s-.2-1.7-1-2.4c-.9-1-1.9-1-2.4-1.1C16.8 2.5 12 2.5 12 2.5s-4.8 0-8.1.2c-.5.1-1.5.1-2.4 1.1-.8.7-1 2.4-1 2.4S.3 8.1.3 10v1.8c0 1.9.2 3.8.2 3.8s.2 1.7 1 2.4c.9 1 2.1.9 2.6 1 1.9.2 8 .2 8 .2s4.8 0 8.1-.3c.5-.1 1.5-.1 2.4-1.1.8-.7 1-2.4 1-2.4s.2-1.9.2-3.8V10c0-1.9-.3-3.8-.3-3.8zM9.7 15.5V8.4l6.6 3.6-6.6 3.5z"/></svg>
         </div>
-        <div class="social-body">
+        <div>
           <div class="social-platform">YouTube</div>
           <div class="social-handle">@Dragon-Editssz</div>
-          <div class="social-desc" style="margin-top:8px;">NBA edits, cinematic highlights, and 3D motion content. Subscribe for the latest drops.</div>
         </div>
+        <div class="social-desc">NBA edits, cinematic highlights, and 3D motion content — subscribe for the latest drops.</div>
         <div class="social-arrow">↗</div>
       </a>
 
       <a href="https://www.tiktok.com/@dragon_editz_s" target="_blank" rel="noopener" class="social-card card-tt reveal">
         <div class="social-icon icon-tt">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--text)"><path d="M19.6 3.6C18.3 2.1 17.6.5 17.4.1h-3.6v16.1c0 1.5-1.2 2.7-2.7 2.7s-2.7-1.2-2.7-2.7 1.2-2.7 2.7-2.7c.3 0 .6 0 .9.1V9.8c-.3 0-.6-.1-.9-.1C7 9.7 3.8 12.9 3.8 16.9s3.2 7.2 7.2 7.2 7.2-3.2 7.2-7.2V8.3c1.3.9 2.9 1.5 4.6 1.5V6.2c-1.2 0-2.4-.9-3.2-2.6z"/></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M19.6 3.6C18.3 2.1 17.6.5 17.4.1h-3.6v16.1c0 1.5-1.2 2.7-2.7 2.7s-2.7-1.2-2.7-2.7 1.2-2.7 2.7-2.7c.3 0 .6 0 .9.1V9.8c-.3 0-.6-.1-.9-.1C7 9.7 3.8 12.9 3.8 16.9s3.2 7.2 7.2 7.2 7.2-3.2 7.2-7.2V8.3c1.3.9 2.9 1.5 4.6 1.5V6.2c-1.2 0-2.4-.9-3.2-2.6z"/></svg>
         </div>
         <div>
           <div class="social-platform">TikTok</div>
           <div class="social-handle">@dragon_editz_s</div>
         </div>
-        <div class="social-desc">Viral NBA clips and trending basketball content daily.</div>
+        <div class="social-desc">Viral NBA clips, short-form edits, and trending basketball content daily.</div>
         <div class="social-arrow">↗</div>
       </a>
 
       <a href="https://linktr.ee/dragonedit" target="_blank" rel="noopener" class="social-card card-lt reveal">
         <div class="social-icon icon-lt">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="oklch(0.75 0.18 145)"><path d="M13.1 5.9l3.6-3.6 1.8 1.8-3.6 3.6h5.1v2.6h-5.1l3.6 3.6-1.8 1.8-3.6-3.6v5.1h-2.6v-5.1l-3.6 3.6-1.8-1.8 3.6-3.6H3.6V8.3h5.1L5.1 4.1l1.8-1.8 3.6 3.6V0h2.6v5.9zM10.5 15.8h2.6V24h-2.6z"/></svg>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="#39d149"><path d="M13.1 5.9l3.6-3.6 1.8 1.8-3.6 3.6h5.1v2.6h-5.1l3.6 3.6-1.8 1.8-3.6-3.6v5.1h-2.6v-5.1l-3.6 3.6-1.8-1.8 3.6-3.6H3.6V8.3h5.1L5.1 4.1l1.8-1.8 3.6 3.6V0h2.6v5.9zM10.5 15.8h2.6V24h-2.6z"/></svg>
         </div>
         <div>
           <div class="social-platform">Linktree</div>
           <div class="social-handle">linktr.ee/dragonedit</div>
         </div>
-        <div class="social-desc">All links in one place: pricing, socials, commissions, and more.</div>
+        <div class="social-desc">All links in one place — pricing, socials, commissions, and more.</div>
         <div class="social-arrow">↗</div>
       </a>
 
-      <a href="https://linktr.ee/dragonedit" target="_blank" rel="noopener" class="commission-strip reveal">
-        <div class="commission-left">
-          <span class="commission-label">Open for work</span>
-          <span class="commission-title">Custom NBA Edits</span>
-          <span class="commission-sub">Player tributes, hype reels, brand content. Let's build something elite.</span>
+      <a href="https://linktr.ee/dragonedit" target="_blank" rel="noopener" class="social-card card-dm reveal">
+        <div class="social-icon icon-dm">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="#ff4d00"><path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm-2 10H6V10h12v2zm0-4H6V6h12v2z"/></svg>
         </div>
-        <span class="commission-btn">Book an Edit</span>
+        <div>
+          <div class="social-platform">Commission</div>
+          <div class="social-handle">Book an Edit</div>
+        </div>
+        <div class="social-desc">Want a custom NBA edit? DMs are open. Let's make something elite.</div>
+        <div class="social-arrow">↗</div>
       </a>
 
     </div>
   </section>
 
+  <!-- CTA -->
   <section id="cta">
     <div class="reveal">
       <p class="section-label" style="text-align:center">Ready?</p>
       <h2 class="cta-title">Let's Make<br><span style="color:var(--orange)">Something Fire</span></h2>
-      <p class="cta-sub">Custom NBA edits, player tributes, hype reels: whatever you need.</p>
+      <p class="cta-sub">Custom NBA edits, player tributes, hype reels — whatever you need.</p>
       <div class="cta-btns">
         <a href="https://linktr.ee/dragonedit" target="_blank" rel="noopener" class="btn-primary">Book an Edit</a>
         <a href="https://www.youtube.com/@Dragon-Editssz" target="_blank" rel="noopener" class="btn-ghost">Watch My Work</a>
@@ -773,6 +794,7 @@
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
     <span class="footer-logo">DRAGON</span>
     <div class="footer-links">
@@ -784,22 +806,30 @@
   </footer>
 
   <script>
+    // Nav scroll effect
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 40);
     }, { passive: true });
 
+
+    // Intersection Observer for reveal + skill bars
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-          entry.target.querySelectorAll('.skill-fill').forEach(fill => fill.classList.add('animated'));
+          // Animate skill bars inside this element
+          entry.target.querySelectorAll('.skill-fill').forEach(fill => {
+            fill.classList.add('animated');
+          });
           observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.15 });
+
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+    // Particle canvas
     const canvas = document.getElementById('particles');
     const ctx = canvas.getContext('2d');
     let W, H, particles = [];
@@ -820,7 +850,7 @@
         this.vx = (Math.random() - 0.5) * 0.3;
         this.vy = (Math.random() - 0.5) * 0.3;
         this.alpha = Math.random() * 0.4 + 0.05;
-        this.warm = Math.random() > 0.6;
+        this.color = Math.random() > 0.6 ? '255,77,0' : '255,255,255';
       }
       update() {
         this.x += this.vx;
@@ -830,9 +860,7 @@
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-        ctx.fillStyle = this.warm
-          ? `oklch(0.63 0.22 35 / ${this.alpha})`
-          : `oklch(0.98 0.004 80 / ${this.alpha})`;
+        ctx.fillStyle = `rgba(${this.color},${this.alpha})`;
         ctx.fill();
       }
     }
