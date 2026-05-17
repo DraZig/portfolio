@@ -346,18 +346,45 @@
       position: relative;
       transition: transform 0.4s cubic-bezier(.175,.885,.32,1.275), border-color 0.3s, box-shadow 0.4s;
       cursor: pointer;
+      display: block;
+      text-decoration: none;
     }
     .short-card:hover {
       transform: translateY(-12px) scale(1.02);
       border-color: var(--orange);
       box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 30px var(--orange-glow);
     }
-    .short-card iframe {
+    .short-thumb {
       width: 100%;
       height: 100%;
-      border: none;
-      pointer-events: auto;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
     }
+    .short-card:hover .short-thumb { transform: scale(1.05); }
+    .short-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .short-card:hover .short-overlay { opacity: 1; }
+    .play-btn {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      transition: transform 0.2s;
+    }
+    .short-card:hover .play-btn { transform: scale(1.1); }
+    .play-btn svg { margin-left: 4px; }
 
     /* ─── ABOUT ───────────────────────────────────────── */
     #about {
@@ -625,13 +652,34 @@
       <p class="section-desc">Cinematic NBA highlights, 3D motion sequences, and viral-ready short-form content.</p>
     </div>
     <div class="shorts-grid">
-      <div class="short-card reveal"><iframe src="https://www.youtube-nocookie.com/embed/Lx4hWniTEpE" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="short-card reveal"><iframe src="https://www.youtube-nocookie.com/embed/tRkDxGzcSdE" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="short-card reveal"><iframe src="https://www.youtube-nocookie.com/embed/Rg5vCBetb-Y" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="short-card reveal"><iframe src="https://www.youtube-nocookie.com/embed/hdEu59PVV0w" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="short-card reveal"><iframe src="https://www.youtube-nocookie.com/embed/idSV63GmJXY" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="short-card reveal"><iframe src="https://www.youtube-nocookie.com/embed/YCGmblTXQjc" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-      <div class="short-card reveal"><iframe src="https://www.youtube-nocookie.com/embed/LXy5_TacMx0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      <a class="short-card reveal" href="https://www.youtube.com/shorts/Lx4hWniTEpE" target="_blank" rel="noopener">
+        <img class="short-thumb" src="https://img.youtube.com/vi/Lx4hWniTEpE/hqdefault.jpg" alt="NBA Edit" loading="lazy">
+        <div class="short-overlay"><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#ff4d00"><path d="M8 5v14l11-7z"/></svg></div></div>
+      </a>
+      <a class="short-card reveal" href="https://www.youtube.com/shorts/tRkDxGzcSdE" target="_blank" rel="noopener">
+        <img class="short-thumb" src="https://img.youtube.com/vi/tRkDxGzcSdE/hqdefault.jpg" alt="NBA Edit" loading="lazy">
+        <div class="short-overlay"><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#ff4d00"><path d="M8 5v14l11-7z"/></svg></div></div>
+      </a>
+      <a class="short-card reveal" href="https://www.youtube.com/shorts/Rg5vCBetb-Y" target="_blank" rel="noopener">
+        <img class="short-thumb" src="https://img.youtube.com/vi/Rg5vCBetb-Y/hqdefault.jpg" alt="NBA Edit" loading="lazy">
+        <div class="short-overlay"><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#ff4d00"><path d="M8 5v14l11-7z"/></svg></div></div>
+      </a>
+      <a class="short-card reveal" href="https://www.youtube.com/shorts/hdEu59PVV0w" target="_blank" rel="noopener">
+        <img class="short-thumb" src="https://img.youtube.com/vi/hdEu59PVV0w/hqdefault.jpg" alt="NBA Edit" loading="lazy">
+        <div class="short-overlay"><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#ff4d00"><path d="M8 5v14l11-7z"/></svg></div></div>
+      </a>
+      <a class="short-card reveal" href="https://www.youtube.com/shorts/idSV63GmJXY" target="_blank" rel="noopener">
+        <img class="short-thumb" src="https://img.youtube.com/vi/idSV63GmJXY/hqdefault.jpg" alt="NBA Edit" loading="lazy">
+        <div class="short-overlay"><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#ff4d00"><path d="M8 5v14l11-7z"/></svg></div></div>
+      </a>
+      <a class="short-card reveal" href="https://www.youtube.com/shorts/YCGmblTXQjc" target="_blank" rel="noopener">
+        <img class="short-thumb" src="https://img.youtube.com/vi/YCGmblTXQjc/hqdefault.jpg" alt="NBA Edit" loading="lazy">
+        <div class="short-overlay"><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#ff4d00"><path d="M8 5v14l11-7z"/></svg></div></div>
+      </a>
+      <a class="short-card reveal" href="https://www.youtube.com/shorts/LXy5_TacMx0" target="_blank" rel="noopener">
+        <img class="short-thumb" src="https://img.youtube.com/vi/LXy5_TacMx0/hqdefault.jpg" alt="NBA Edit" loading="lazy">
+        <div class="short-overlay"><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#ff4d00"><path d="M8 5v14l11-7z"/></svg></div></div>
+      </a>
     </div>
   </section>
 
