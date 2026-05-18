@@ -388,6 +388,95 @@
     .play-btn svg { margin-left: 4px; }
 
 
+    /* ─── FEATURED ATHLETE ───────────────────────────── */
+    #featured {
+      background: #000;
+      border-top: 1px solid var(--border);
+      padding: 100px 24px;
+      overflow: hidden;
+    }
+    .featured-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .featured-photos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 12px;
+    }
+    .featured-photo {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #0a0a0a;
+      transition: transform 0.4s var(--ease-out), border-color 0.3s var(--ease-out);
+    }
+    .featured-photo:hover { transform: scale(1.02); border-color: var(--orange); }
+    .featured-photo.tall { grid-row: span 2; }
+    .featured-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.9) contrast(1.05);
+      transition: filter 0.4s var(--ease-out);
+    }
+    .featured-photo:hover img { filter: brightness(1) contrast(1.1); }
+    .featured-photo.tall img { height: 100%; min-height: 340px; }
+    .featured-photo.short img { height: 180px; }
+    .featured-text .section-label { margin-bottom: 12px; }
+    .featured-name {
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 900;
+      letter-spacing: -4px;
+      line-height: 0.9;
+      margin-bottom: 12px;
+    }
+    .featured-number {
+      font-size: 1rem;
+      color: var(--orange);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+    .featured-desc {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.75;
+      max-width: 46ch;
+      margin-bottom: 32px;
+    }
+    .featured-stats {
+      display: flex;
+      gap: 32px;
+      border-top: 1px solid var(--border);
+      padding-top: 28px;
+    }
+    .featured-stat-num {
+      font-size: 1.8rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      color: var(--orange);
+    }
+    .featured-stat-label {
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    @media (max-width: 900px) {
+      .featured-inner { grid-template-columns: 1fr; }
+      .featured-photos { grid-template-columns: 1fr 1fr; }
+    }
+
     /* ─── ABOUT ───────────────────────────────────────── */
     #about {
       background: linear-gradient(180deg, #000 0%, #080808 100%);
@@ -706,6 +795,43 @@
         <img class="short-thumb" src="https://img.youtube.com/vi/LXy5_TacMx0/hqdefault.jpg" alt="NBA Edit" loading="lazy">
         <div class="short-overlay"><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#ff4d00"><path d="M8 5v14l11-7z"/></svg></div></div>
       </a>
+    </div>
+  </section>
+
+  <!-- FEATURED ATHLETE -->
+  <section id="featured">
+    <div class="featured-inner">
+      <div class="featured-photos reveal">
+        <div class="featured-photo tall">
+          <img src="https://cdn.nba.com/headshots/nba/latest/1040x760/201939.png" alt="Stephen Curry" loading="lazy">
+        </div>
+        <div class="featured-photo short">
+          <img src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/201939.png" alt="Stephen Curry" loading="lazy">
+        </div>
+        <div class="featured-photo short">
+          <img src="https://img.youtube.com/vi/Lx4hWniTEpE/hqdefault.jpg" alt="Dragon Edit feat. Curry" loading="lazy">
+        </div>
+      </div>
+      <div class="featured-text reveal">
+        <p class="section-label">Featured Athlete</p>
+        <h2 class="featured-name">STEPH<br>CURRY</h2>
+        <p class="featured-number">#30 · Golden State Warriors</p>
+        <p class="featured-desc">The greatest shooter in NBA history — and one of the most edited players in basketball content. Dragon's Curry edits blend 3D motion, cinematic pacing, and color grading that matches his game: surgical, electric, unforgettable.</p>
+        <div class="featured-stats">
+          <div>
+            <div class="featured-stat-num">4x</div>
+            <div class="featured-stat-label">NBA Champion</div>
+          </div>
+          <div>
+            <div class="featured-stat-num">3x</div>
+            <div class="featured-stat-label">All-Star MVP</div>
+          </div>
+          <div>
+            <div class="featured-stat-num">3,747</div>
+            <div class="featured-stat-label">3-Pointers Made</div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
