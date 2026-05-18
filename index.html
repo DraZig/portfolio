@@ -328,6 +328,77 @@
     }
     .section-header { max-width: 1200px; margin: 0 auto 60px; }
 
+    /* ─── HERO PLAYER IMAGE ──────────────────────────── */
+    .hero-player {
+      position: absolute;
+      right: -40px;
+      bottom: 0;
+      height: 92%;
+      pointer-events: none;
+      z-index: 0;
+      mask-image: linear-gradient(to left, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 65%);
+      -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 65%);
+    }
+    .hero-player img {
+      height: 100%;
+      width: auto;
+      object-fit: contain;
+      object-position: bottom;
+      opacity: 0.18;
+      filter: grayscale(30%) contrast(1.1);
+    }
+    @media (max-width: 900px) { .hero-player { display: none; } }
+
+    /* ─── CURRY BANNER ────────────────────────────────── */
+    .curry-banner {
+      position: relative;
+      height: 380px;
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .curry-banner-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      filter: brightness(0.4) grayscale(20%) contrast(1.1);
+      display: block;
+    }
+    .curry-banner-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);
+      display: flex;
+      align-items: center;
+      padding: 0 10%;
+    }
+    .curry-banner-text { max-width: 600px; }
+    .curry-banner-label {
+      font-size: 0.7rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 16px;
+    }
+    .curry-banner-name {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 900;
+      letter-spacing: -4px;
+      line-height: 0.85;
+      margin-bottom: 20px;
+    }
+    .curry-banner-sub {
+      font-size: 0.85rem;
+      color: var(--muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    @media (max-width: 600px) {
+      .curry-banner { height: 260px; }
+      .curry-banner-overlay { padding: 0 6%; }
+    }
+
     /* ─── WORK / SHORTS ───────────────────────────────── */
     #work { background: #000; }
 
@@ -405,9 +476,10 @@
     }
     .featured-photos {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto;
+      grid-template-columns: 1.2fr 1fr;
+      grid-template-rows: 1fr 1fr;
       gap: 12px;
+      height: 520px;
     }
     .featured-photo {
       border-radius: 16px;
@@ -427,8 +499,10 @@
       transition: filter 0.4s var(--ease-out);
     }
     .featured-photo:hover img { filter: brightness(1) contrast(1.1); }
-    .featured-photo.tall img { height: 100%; min-height: 340px; }
-    .featured-photo.short img { height: 180px; }
+    .featured-photo.tall { grid-row: span 2; height: 100%; }
+    .featured-photo.tall img { height: 100%; }
+    .featured-photo.short { height: 100%; }
+    .featured-photo.short img { height: 100%; }
     .featured-text .section-label { margin-bottom: 12px; }
     .featured-name {
       font-size: clamp(3rem, 7vw, 5.5rem);
@@ -722,6 +796,10 @@
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
 
+    <div class="hero-player">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Stephen_Curry.jpg/600px-Stephen_Curry.jpg" alt="Steph Curry" loading="eager">
+    </div>
+
     <p class="hero-eyebrow">NBA Video Editor</p>
     <h1 class="hero-title">DRAGON</h1>
     <p class="hero-sub">Cinematic Highlights &nbsp;·&nbsp; 3D Motion &nbsp;·&nbsp; Pure Fire</p>
@@ -756,6 +834,18 @@
     <div class="stat">
       <div class="stat-num">🔥</div>
       <div class="stat-label">Always Cooking</div>
+    </div>
+  </div>
+
+  <!-- CURRY BANNER -->
+  <div class="curry-banner reveal">
+    <img class="curry-banner-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/20140814_World_Basketball_Festival_Stephen_Curry_(cropped).JPG/1200px-20140814_World_Basketball_Festival_Stephen_Curry_(cropped).JPG" alt="Stephen Curry" loading="lazy">
+    <div class="curry-banner-overlay">
+      <div class="curry-banner-text">
+        <p class="curry-banner-label">The Subject</p>
+        <h2 class="curry-banner-name">STEPH<br>CURRY</h2>
+        <p class="curry-banner-sub">#30 &nbsp;·&nbsp; Golden State Warriors &nbsp;·&nbsp; 4× Champion</p>
+      </div>
     </div>
   </div>
 
@@ -803,13 +893,13 @@
     <div class="featured-inner">
       <div class="featured-photos reveal">
         <div class="featured-photo tall">
-          <img src="https://cdn.nba.com/headshots/nba/latest/1040x760/201939.png" alt="Stephen Curry" loading="lazy">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Stephen_Curry_2.jpg/600px-Stephen_Curry_2.jpg" alt="Stephen Curry" loading="lazy">
         </div>
         <div class="featured-photo short">
-          <img src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/201939.png" alt="Stephen Curry" loading="lazy">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Steph_Curry.jpg/400px-Steph_Curry.jpg" alt="Stephen Curry" loading="lazy">
         </div>
         <div class="featured-photo short">
-          <img src="https://img.youtube.com/vi/Lx4hWniTEpE/hqdefault.jpg" alt="Dragon Edit feat. Curry" loading="lazy">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Stephen_Curry.jpg/400px-Stephen_Curry.jpg" alt="Stephen Curry" loading="lazy">
         </div>
       </div>
       <div class="featured-text reveal">
